@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect } from 'react'
+import io from 'socket.io-client';
 function App() {
+  useEffect(()=>{
+    const socket=io("http://localhost:3002");
+    
+    socket.on("forAllMsg",(akshita)=>{
+      console.log(akshita);
+    })
+
+    socket.on("connect",()=>{
+      console.log("Connected to server with ID:",socket.id);
+    })
+
+   
+  },[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+      <h2>Socket Chat App</h2>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
