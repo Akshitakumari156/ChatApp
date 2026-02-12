@@ -24,6 +24,15 @@ io.on("connection",(socket)=>{
         socket.to(data.id).emit("personal-msg",data.msg);
     });
 
+    socket.on("join-room",(roomName)=>{
+        socket.join(roomName);
+        console.log(`${socket.id} joined room ${roomName}`);
+    })
+
+    socket.on("disconnect",()=>{
+        console.log("User disconnected",socket.id);
+    })
+
 });
 
 
